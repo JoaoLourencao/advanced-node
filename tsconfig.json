@@ -9,9 +9,18 @@
     "strict": true, /* Enable all strict type-checking options. */
     "skipLibCheck": true, /* Skip type checking all .d.ts files. */
     "sourceMap": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "paths": {
+      "@/*": [
+        "*"
+      ],
+      "@tests/*": [
+        "../tests/*"
+      ]
+    }
   },
   "include": [
-    "src"
+    "src",
+    "tests"
   ]
 }

@@ -1,7 +1,5 @@
-// eslint-disable-next-line @typescript-eslint/consistent-type-imports
-import { AccessToken } from '@/domain/models'
-// eslint-disable-next-line @typescript-eslint/consistent-type-imports
-import { AuthenticationError } from '@/domain/errors'
+import { type AuthenticationError } from '@/domain/errors'
+import { type AccessToken } from '@/domain/models'
 
 export interface FacebookAuthentication {
   exec: (params: FacebookAuthentication.Params) => Promise<FacebookAuthentication.Result>

@@ -1,10 +1,9 @@
-import { UploadFile, UUIDGenerator, DeleteFile } from '@/domain/contracts/gateways'
-import { SaveUserPicture, LoadUserProfile } from '@/domain/contracts/repos'
+import { DeleteFile, UploadFile, UUIDGenerator } from '@/domain/contracts/gateways'
+import { LoadUserProfile, SaveUserPicture } from '@/domain/contracts/repos'
 import { UserProfile } from '@/domain/entities'
 import { ChangeProfilePicture, setupChangeProfilePicture } from '@/domain/use-cases'
 
 import { mock, MockProxy } from 'jest-mock-extended'
-import { mocked } from 'ts-jest/utils'
 
 jest.mock('@/domain/entities/user-profile')
 
@@ -58,7 +57,7 @@ describe('ChangeProfilePicture', () => {
   it('should call SaveUserPicture with correct input', async () => {
     await sut({ id: 'any_id', file })
 
-    expect(userProfileRepo.savePicture).toHaveBeenCalledWith(...mocked(UserProfile).mock.instances)
+    expect(userProfileRepo.savePicture).toHaveBeenCalledWith(...jest.mocked(UserProfile).mock.instances)
     expect(userProfileRepo.savePicture).toHaveBeenCalledTimes(1)
   })
 
@@ -67,7 +66,7 @@ describe('ChangeProfilePicture', () => {
 
     await sut({ id: 'any_id', file })
 
-    expect(userProfileRepo.savePicture).toHaveBeenCalledWith(...mocked(UserProfile).mock.instances)
+    expect(userProfileRepo.savePicture).toHaveBeenCalledWith(...jest.mocked(UserProfile).mock.instances)
     expect(userProfileRepo.savePicture).toHaveBeenCalledTimes(1)
   })
 
@@ -85,7 +84,7 @@ describe('ChangeProfilePicture', () => {
   })
 
   it('should return correct data on success', async () => {
-    mocked(UserProfile).mockImplementationOnce(id => ({
+    jest.mocked(UserProfile).mockImplementationOnce(id => ({
       setPicture: jest.fn(),
       id: 'any_id',
       pictureUrl: 'any_url',

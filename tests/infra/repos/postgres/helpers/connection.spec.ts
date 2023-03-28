@@ -1,7 +1,6 @@
 import { PgUser } from '@/infra/repos/postgres/entities'
-import { PgConnection, ConnectionNotFoundError, TransactionNotFoundError } from '@/infra/repos/postgres/helpers'
+import { ConnectionNotFoundError, PgConnection, TransactionNotFoundError } from '@/infra/repos/postgres/helpers'
 
-import { mocked } from 'ts-jest/utils'
 import { createConnection, getConnection, getConnectionManager, getRepository } from 'typeorm'
 
 jest.mock('typeorm', () => ({
@@ -53,10 +52,10 @@ describe('PgConnection', () => {
       createQueryRunner: createQueryRunnerSpy,
       close: closeSpy
     })
-    mocked(createConnection).mockImplementation(createConnectionSpy)
-    mocked(getConnectionManager).mockImplementation(getConnectionManagerSpy)
-    mocked(getConnection).mockImplementation(getConnectionSpy)
-    mocked(getRepository).mockImplementation(getRepositorySpy)
+    jest.mocked(createConnection).mockImplementation(createConnectionSpy)
+    jest.mocked(getConnectionManager).mockImplementation(getConnectionManagerSpy)
+    jest.mocked(getConnection).mockImplementation(getConnectionSpy)
+    jest.mocked(getRepository).mockImplementation(getRepositorySpy)
   })
 
   beforeEach(() => {

@@ -1,6 +1,6 @@
 
 export interface HttpGetClient {
-  get: (params: HttpGetClient.Params) => Promise<void>
+  get: (params: HttpGetClient.Params) => Promise<HttpGetClient.Result>
 
 }
 
@@ -9,4 +9,6 @@ export namespace HttpGetClient{
     url: string
     params: object
   }
+
+  export type Result = any
 }

@@ -1,3 +1,1 @@
-import '../config/module-alias'
-
-console.log('teste')
+import '../config/module-alias';

@@ -1,7 +1,7 @@
-import { ConnectionNotFoundError, TransactionNotFoundError } from '@/infra/repos/postgres/helpers'
 import { DbTransaction } from '@/application/contracts'
+import { ConnectionNotFoundError, TransactionNotFoundError } from '@/infra/repos/postgres/helpers'
 
-import { createConnection, getConnection, getConnectionManager, ObjectType, QueryRunner, Repository, Connection, getRepository } from 'typeorm'
+import { Connection, createConnection, getConnection, getConnectionManager, getRepository, ObjectLiteral, ObjectType, QueryRunner, Repository } from 'typeorm'
 
 export class PgConnection implements DbTransaction {
   private static instance?: PgConnection
@@ -49,7 +49,7 @@ export class PgConnection implements DbTransaction {
     await this.query.rollbackTransaction()
   }
 
-  getRepository<Entity> (entity: ObjectType<Entity>): Repository<Entity> {
+  getRepository<Entity extends ObjectLiteral> (entity: ObjectType<Entity>): Repository<Entity> {
     if (this.connection === undefined) throw new ConnectionNotFoundError()
     if (this.query !== undefined) return this.query.manager.getRepository(entity)
     return getRepository(entity)

@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
 
 @Entity({ name: 'usuarios' })
 export class PgUser {

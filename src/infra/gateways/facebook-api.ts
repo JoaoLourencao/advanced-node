@@ -1,5 +1,5 @@
-import { HttpGetClient } from '@/infra/gateways'
 import { LoadFacebookUser } from '@/domain/contracts/gateways'
+import { HttpGetClient } from '@/infra/gateways'
 
 type AppToken = { access_token: string }
 type DebugToken = { data: { user_id: string } }
@@ -19,7 +19,7 @@ export class FacebookApi implements LoadFacebookUser {
   async loadUser ({ token }: Input): Promise<Output> {
     return this.getUserInfo(token)
       .then(({ id, name, email }) => ({ facebookId: id, name, email }))
-      .catch(() => undefined)
+      .catch((error) => { console.error(error); return undefined })
   }
 
   private async getAppToken (): Promise<AppToken> {

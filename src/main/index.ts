@@ -1,8 +1,8 @@
-import { PgConnection } from '@/infra/repos/postgres/helpers'
-import { env } from '@/main/config/env'
 import './config/module-alias'
 
+import { PgConnection } from '@/infra/repos/postgres/helpers'
 import 'reflect-metadata'
+import { env } from './config/env'
 
 PgConnection.getInstance().connect()
   .then(async () => {

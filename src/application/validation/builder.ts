@@ -1,4 +1,4 @@
-import { Validator, AllowedMimeTypes, Extension, MaxFileSize, Required, RequiredBuffer, RequiredString } from '@/application/validation'
+import { AllowedMimeTypes, Extension, MaxFileSize, Required, RequiredBuffer, RequiredString, Validator } from '@/application/validation'
 
 export class ValidationBuilder {
   private constructor (
@@ -18,7 +18,7 @@ export class ValidationBuilder {
       this.validators.push(new RequiredString(this.value, this.fieldName))
     } else {
       this.validators.push(new Required(this.value, this.fieldName))
-      if (this.value.buffer !== undefined) {
+      if (this.value?.buffer !== undefined) {
         this.validators.push(new RequiredBuffer(this.value.buffer, this.fieldName))
       }
     }
